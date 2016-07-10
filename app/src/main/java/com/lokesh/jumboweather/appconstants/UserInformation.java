@@ -24,6 +24,16 @@ public class UserInformation {
     private static double lat;
     private static double lng;
 
+    public static String getUserLocation() {
+        return userLocation;
+    }
+
+    public static void setUserLocation(String userLocation) {
+        UserInformation.userLocation = userLocation;
+    }
+
+    private static String userLocation;
+
     public static String getLocation() {
         return location;
     }

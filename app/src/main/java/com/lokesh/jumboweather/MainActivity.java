@@ -10,7 +10,10 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.util.Log;
+import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.android.volley.Request;
@@ -42,6 +45,8 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
     private GoogleApiClient mGoogleApiClient;
     private String MAP_TAG = "MAP";
     private String NETWORK_TAG = "NETWORK";
+    private String DEEPLINK_TAG = "DEEPLINK";
+
 
     // Ui References
     private TextView currentTemp;
@@ -50,6 +55,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
     private TextView currentTime;
     private TextView minTemp;
     private TextView maxTemp;
+    private LinearLayout tempLayout;
 
 
     private RecyclerView dayforecastList;
@@ -75,12 +81,31 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
 
         if (data != null) {
             // handle deeplink
+            handleDeeplink(data);
         } else {
             prepareGoogleApiLocationClient();
             registerLocationRequest();
 
         }
 
+    }
+
+    public void handleDeeplink(Uri data) {
+        String lat = data.getQueryParameter("lat");
+        String lng = data.getQueryParameter("lng");
+        String location = data.getQueryParameter("location");
+
+        if (TextUtils.isEmpty(lat) || TextUtils.isEmpty(lng)) {
+            if (TextUtils.isEmpty(location)) {
+                // Todo Invalid deeplink
+            } else {
+                // Todo fetch id for the particular location and proceed
+            }
+
+        } else {
+            // latlng available , follow the usual procedure
+            setUserLocationfromDeeplink(lat, lng);
+        }
     }
 
     public void setCurrentDayExtremes(AccuWeatherFivedayForecastResponse data) {
@@ -124,6 +149,8 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
         dayforecastList = (RecyclerView) findViewById(R.id.dayforecastList);
 
         hourforecastList = (RecyclerView) findViewById(R.id.hourforecastList);
+
+        tempLayout = (LinearLayout) findViewById(R.id.tempLayout);
     }
 
     public void setUserDetails(AccuWeatherGeolocationResponse data) {
@@ -143,6 +170,37 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
         currentTemp.setText(data.getTemperature().getMetric().getValue().toString());
         onewordWeather.setText(data.getWeatherText());
 
+        prepareDetailView(data);
+
+    }
+
+    public void prepareDetailView(AccuWeatherCurrentWeatherData data) {
+
+        String currentTemp = data.getTemperature().getMetric().getValue().toString();
+        String humidity = data.getRelativeHumidity();
+        String visibility = data.getVisibility().getMetric().getValue();
+        String uvIndex = data.getUVIndex();
+        String uvIndexTest = data.getUVIndexText();
+
+        DetailRaven currentWeatherDetailsRaven = new DetailRaven(currentTemp, humidity, visibility, uvIndex, uvIndexTest, UserInformation.getLat(), UserInformation.getLng(), UserInformation.getUserLocation());
+
+        enableDetailClick(currentWeatherDetailsRaven);
+
+    }
+
+    public void enableDetailClick(final DetailRaven currentWeatherDetailsRaven) {
+        if (tempLayout == null) {
+            return;
+        }
+
+        tempLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent detailPageIntent = new Intent(MainActivity.this, DetailActivity.class);
+                detailPageIntent.putExtra("details", currentWeatherDetailsRaven);
+                startActivity(detailPageIntent);
+            }
+        });
     }
 
 
@@ -215,7 +273,10 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
                 Log.d(NETWORK_TAG, response);
                 Gson gson = new Gson();
                 AccuWeatherGeolocationResponse locationResponse = gson.fromJson(response, AccuWeatherGeolocationResponse.class);
+
+
                 UserInformation.setAccuweather_locationid(locationResponse.getKey());
+                UserInformation.setUserLocation(locationResponse.getEnglishName());
                 setUserDetails(locationResponse);
                 fetchWeatherInfo();
             }
@@ -318,11 +379,17 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
         if (mLastLocation != null) {
             UserInformation.setLat(mLastLocation.getLatitude());
             UserInformation.setLng(mLastLocation.getLongitude());
-            Log.d(MAP_TAG, "Location found : " + String.valueOf(mLastLocation.getLatitude()) + " , " + String.valueOf(mLastLocation.getLongitude()));
             getLocationId();
+            Log.d(MAP_TAG, "Location found : " + String.valueOf(mLastLocation.getLatitude()) + " , " + String.valueOf(mLastLocation.getLongitude()));
         }
 
+    }
 
+    public void setUserLocationfromDeeplink(String lat, String lng) {
+        // lat lng wont be null
+        UserInformation.setLat(Long.valueOf(lat));
+        UserInformation.setLng(Long.valueOf(lng));
+        getLocationId();
     }
 
     @Override

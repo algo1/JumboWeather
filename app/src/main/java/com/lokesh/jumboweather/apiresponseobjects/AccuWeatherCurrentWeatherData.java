@@ -18,7 +18,7 @@ public class AccuWeatherCurrentWeatherData {
     private String weatherText;
     @SerializedName("WeatherIcon")
     @Expose
-    private float weatherIcon;
+    private String weatherIcon;
     @SerializedName("IsDayTime")
     @Expose
     private Boolean isDayTime;
@@ -33,7 +33,7 @@ public class AccuWeatherCurrentWeatherData {
     private ApparentTemperature.Imperial_____.Imperial_________.RealFeelTemperatureShade realFeelTemperatureShade;
     @SerializedName("RelativeHumidity")
     @Expose
-    private float relativeHumidity;
+    private String relativeHumidity;
     @SerializedName("DewPofloat")
     @Expose
     private ApparentTemperature.DewPofloat dewPofloat;
@@ -45,7 +45,7 @@ public class AccuWeatherCurrentWeatherData {
     private ApparentTemperature.Imperial_____.Imperial_________.WindGust windGust;
     @SerializedName("UVIndex")
     @Expose
-    private float uVIndex;
+    private String uVIndex;
     @SerializedName("UVIndexText")
     @Expose
     private String uVIndexText;
@@ -57,7 +57,7 @@ public class AccuWeatherCurrentWeatherData {
     private String obstructionsToVisibility;
     @SerializedName("CloudCover")
     @Expose
-    private float cloudCover;
+    private String cloudCover;
     @SerializedName("Ceiling")
     @Expose
     private ApparentTemperature.Ceiling ceiling;
@@ -140,14 +140,14 @@ public class AccuWeatherCurrentWeatherData {
     /**
      * @return The weatherIcon
      */
-    public float getWeatherIcon() {
+    public String getWeatherIcon() {
         return weatherIcon;
     }
 
     /**
      * @param weatherIcon The WeatherIcon
      */
-    public void setWeatherIcon(float weatherIcon) {
+    public void setWeatherIcon(String weatherIcon) {
         this.weatherIcon = weatherIcon;
     }
 
@@ -210,14 +210,14 @@ public class AccuWeatherCurrentWeatherData {
     /**
      * @return The relativeHumidity
      */
-    public float getRelativeHumidity() {
+    public String getRelativeHumidity() {
         return relativeHumidity;
     }
 
     /**
      * @param relativeHumidity The RelativeHumidity
      */
-    public void setRelativeHumidity(float relativeHumidity) {
+    public void setRelativeHumidity(String relativeHumidity) {
         this.relativeHumidity = relativeHumidity;
     }
 
@@ -266,14 +266,14 @@ public class AccuWeatherCurrentWeatherData {
     /**
      * @return The uVIndex
      */
-    public float getUVIndex() {
+    public String getUVIndex() {
         return uVIndex;
     }
 
     /**
      * @param uVIndex The UVIndex
      */
-    public void setUVIndex(float uVIndex) {
+    public void setUVIndex(String uVIndex) {
         this.uVIndex = uVIndex;
     }
 
@@ -322,14 +322,14 @@ public class AccuWeatherCurrentWeatherData {
     /**
      * @return The cloudCover
      */
-    public float getCloudCover() {
+    public String getCloudCover() {
         return cloudCover;
     }
 
     /**
      * @param cloudCover The CloudCover
      */
-    public void setCloudCover(float cloudCover) {
+    public void setCloudCover(String cloudCover) {
         this.cloudCover = cloudCover;
     }
 
@@ -623,7 +623,7 @@ public class AccuWeatherCurrentWeatherData {
 
             @SerializedName("Degrees")
             @Expose
-            private float degrees;
+            private String degrees;
             @SerializedName("Localized")
             @Expose
             private String localized;
@@ -634,14 +634,14 @@ public class AccuWeatherCurrentWeatherData {
             /**
              * @return The degrees
              */
-            public float getDegrees() {
+            public String getDegrees() {
                 return degrees;
             }
 
             /**
              * @param degrees The Degrees
              */
-            public void setDegrees(float degrees) {
+            public void setDegrees(String degrees) {
                 this.degrees = degrees;
             }
 
@@ -680,25 +680,25 @@ public class AccuWeatherCurrentWeatherData {
 
             @SerializedName("Value")
             @Expose
-            private float value;
+            private String value;
             @SerializedName("Unit")
             @Expose
             private String unit;
             @SerializedName("UnitType")
             @Expose
-            private float unitType;
+            private String unitType;
 
             /**
              * @return The value
              */
-            public float getValue() {
+            public String getValue() {
                 return value;
             }
 
             /**
              * @param value The Value
              */
-            public void setValue(float value) {
+            public void setValue(String value) {
                 this.value = value;
             }
 
@@ -719,14 +719,14 @@ public class AccuWeatherCurrentWeatherData {
             /**
              * @return The unitType
              */
-            public float getUnitType() {
+            public String getUnitType() {
                 return unitType;
             }
 
             /**
              * @param unitType The UnitType
              */
-            public void setUnitType(float unitType) {
+            public void setUnitType(String unitType) {
                 this.unitType = unitType;
             }
 
@@ -737,25 +737,25 @@ public class AccuWeatherCurrentWeatherData {
 
             @SerializedName("Value")
             @Expose
-            private float value;
+            private String value;
             @SerializedName("Unit")
             @Expose
             private String unit;
             @SerializedName("UnitType")
             @Expose
-            private float unitType;
+            private String unitType;
 
             /**
              * @return The value
              */
-            public float getValue() {
+            public String getValue() {
                 return value;
             }
 
             /**
              * @param value The Value
              */
-            public void setValue(float value) {
+            public void setValue(String value) {
                 this.value = value;
             }
 
@@ -776,14 +776,14 @@ public class AccuWeatherCurrentWeatherData {
             /**
              * @return The unitType
              */
-            public float getUnitType() {
+            public String getUnitType() {
                 return unitType;
             }
 
             /**
              * @param unitType The UnitType
              */
-            public void setUnitType(float unitType) {
+            public void setUnitType(String unitType) {
                 this.unitType = unitType;
             }
 
@@ -793,25 +793,25 @@ public class AccuWeatherCurrentWeatherData {
 
             @SerializedName("Value")
             @Expose
-            private float value;
+            private String value;
             @SerializedName("Unit")
             @Expose
             private String unit;
             @SerializedName("UnitType")
             @Expose
-            private float unitType;
+            private String unitType;
 
             /**
              * @return The value
              */
-            public float getValue() {
+            public String getValue() {
                 return value;
             }
 
             /**
              * @param value The Value
              */
-            public void setValue(float value) {
+            public void setValue(String value) {
                 this.value = value;
             }
 
@@ -832,14 +832,14 @@ public class AccuWeatherCurrentWeatherData {
             /**
              * @return The unitType
              */
-            public float getUnitType() {
+            public String getUnitType() {
                 return unitType;
             }
 
             /**
              * @param unitType The UnitType
              */
-            public void setUnitType(float unitType) {
+            public void setUnitType(String unitType) {
                 this.unitType = unitType;
             }
 
@@ -849,25 +849,25 @@ public class AccuWeatherCurrentWeatherData {
 
             @SerializedName("Value")
             @Expose
-            private float value;
+            private String value;
             @SerializedName("Unit")
             @Expose
             private String unit;
             @SerializedName("UnitType")
             @Expose
-            private float unitType;
+            private String unitType;
 
             /**
              * @return The value
              */
-            public float getValue() {
+            public String getValue() {
                 return value;
             }
 
             /**
              * @param value The Value
              */
-            public void setValue(float value) {
+            public void setValue(String value) {
                 this.value = value;
             }
 
@@ -888,14 +888,14 @@ public class AccuWeatherCurrentWeatherData {
             /**
              * @return The unitType
              */
-            public float getUnitType() {
+            public String getUnitType() {
                 return unitType;
             }
 
             /**
              * @param unitType The UnitType
              */
-            public void setUnitType(float unitType) {
+            public void setUnitType(String unitType) {
                 this.unitType = unitType;
             }
 
@@ -911,7 +911,7 @@ public class AccuWeatherCurrentWeatherData {
             private String unit;
             @SerializedName("UnitType")
             @Expose
-            private float unitType;
+            private String unitType;
 
             /**
              * @return The value
@@ -944,14 +944,14 @@ public class AccuWeatherCurrentWeatherData {
             /**
              * @return The unitType
              */
-            public float getUnitType() {
+            public String getUnitType() {
                 return unitType;
             }
 
             /**
              * @param unitType The UnitType
              */
-            public void setUnitType(float unitType) {
+            public void setUnitType(String unitType) {
                 this.unitType = unitType;
             }
 
@@ -968,7 +968,7 @@ public class AccuWeatherCurrentWeatherData {
             private String unit;
             @SerializedName("UnitType")
             @Expose
-            private float unitType;
+            private String unitType;
 
             /**
              * @return The value
@@ -1001,14 +1001,14 @@ public class AccuWeatherCurrentWeatherData {
             /**
              * @return The unitType
              */
-            public float getUnitType() {
+            public String getUnitType() {
                 return unitType;
             }
 
             /**
              * @param unitType The UnitType
              */
-            public void setUnitType(float unitType) {
+            public void setUnitType(String unitType) {
                 this.unitType = unitType;
             }
 
@@ -1017,25 +1017,25 @@ public class AccuWeatherCurrentWeatherData {
 
                 @SerializedName("Value")
                 @Expose
-                private float value;
+                private String value;
                 @SerializedName("Unit")
                 @Expose
                 private String unit;
                 @SerializedName("UnitType")
                 @Expose
-                private float unitType;
+                private String unitType;
 
                 /**
                  * @return The value
                  */
-                public float getValue() {
+                public String getValue() {
                     return value;
                 }
 
                 /**
                  * @param value The Value
                  */
-                public void setValue(float value) {
+                public void setValue(String value) {
                     this.value = value;
                 }
 
@@ -1056,14 +1056,14 @@ public class AccuWeatherCurrentWeatherData {
                 /**
                  * @return The unitType
                  */
-                public float getUnitType() {
+                public String getUnitType() {
                     return unitType;
                 }
 
                 /**
                  * @param unitType The UnitType
                  */
-                public void setUnitType(float unitType) {
+                public void setUnitType(String unitType) {
                     this.unitType = unitType;
                 }
 
@@ -1073,25 +1073,25 @@ public class AccuWeatherCurrentWeatherData {
 
                 @SerializedName("Value")
                 @Expose
-                private float value;
+                private String value;
                 @SerializedName("Unit")
                 @Expose
                 private String unit;
                 @SerializedName("UnitType")
                 @Expose
-                private float unitType;
+                private String unitType;
 
                 /**
                  * @return The value
                  */
-                public float getValue() {
+                public String getValue() {
                     return value;
                 }
 
                 /**
                  * @param value The Value
                  */
-                public void setValue(float value) {
+                public void setValue(String value) {
                     this.value = value;
                 }
 
@@ -1112,14 +1112,14 @@ public class AccuWeatherCurrentWeatherData {
                 /**
                  * @return The unitType
                  */
-                public float getUnitType() {
+                public String getUnitType() {
                     return unitType;
                 }
 
                 /**
                  * @param unitType The UnitType
                  */
-                public void setUnitType(float unitType) {
+                public void setUnitType(String unitType) {
                     this.unitType = unitType;
                 }
 
@@ -1136,7 +1136,7 @@ public class AccuWeatherCurrentWeatherData {
                 private String unit;
                 @SerializedName("UnitType")
                 @Expose
-                private float unitType;
+                private String unitType;
 
                 /**
                  * @return The value
@@ -1169,14 +1169,14 @@ public class AccuWeatherCurrentWeatherData {
                 /**
                  * @return The unitType
                  */
-                public float getUnitType() {
+                public String getUnitType() {
                     return unitType;
                 }
 
                 /**
                  * @param unitType The UnitType
                  */
-                public void setUnitType(float unitType) {
+                public void setUnitType(String unitType) {
                     this.unitType = unitType;
                 }
 
@@ -1186,25 +1186,25 @@ public class AccuWeatherCurrentWeatherData {
 
                 @SerializedName("Value")
                 @Expose
-                private float value;
+                private String value;
                 @SerializedName("Unit")
                 @Expose
                 private String unit;
                 @SerializedName("UnitType")
                 @Expose
-                private float unitType;
+                private String unitType;
 
                 /**
                  * @return The value
                  */
-                public float getValue() {
+                public String getValue() {
                     return value;
                 }
 
                 /**
                  * @param value The Value
                  */
-                public void setValue(float value) {
+                public void setValue(String value) {
                     this.value = value;
                 }
 
@@ -1225,14 +1225,14 @@ public class AccuWeatherCurrentWeatherData {
                 /**
                  * @return The unitType
                  */
-                public float getUnitType() {
+                public String getUnitType() {
                     return unitType;
                 }
 
                 /**
                  * @param unitType The UnitType
                  */
-                public void setUnitType(float unitType) {
+                public void setUnitType(String unitType) {
                     this.unitType = unitType;
                 }
 
@@ -1241,25 +1241,25 @@ public class AccuWeatherCurrentWeatherData {
 
                     @SerializedName("Value")
                     @Expose
-                    private float value;
+                    private String value;
                     @SerializedName("Unit")
                     @Expose
                     private String unit;
                     @SerializedName("UnitType")
                     @Expose
-                    private float unitType;
+                    private String unitType;
 
                     /**
                      * @return The value
                      */
-                    public float getValue() {
+                    public String getValue() {
                         return value;
                     }
 
                     /**
                      * @param value The Value
                      */
-                    public void setValue(float value) {
+                    public void setValue(String value) {
                         this.value = value;
                     }
 
@@ -1280,14 +1280,14 @@ public class AccuWeatherCurrentWeatherData {
                     /**
                      * @return The unitType
                      */
-                    public float getUnitType() {
+                    public String getUnitType() {
                         return unitType;
                     }
 
                     /**
                      * @param unitType The UnitType
                      */
-                    public void setUnitType(float unitType) {
+                    public void setUnitType(String unitType) {
                         this.unitType = unitType;
                     }
 
@@ -1298,25 +1298,25 @@ public class AccuWeatherCurrentWeatherData {
 
                     @SerializedName("Value")
                     @Expose
-                    private float value;
+                    private String value;
                     @SerializedName("Unit")
                     @Expose
                     private String unit;
                     @SerializedName("UnitType")
                     @Expose
-                    private float unitType;
+                    private String unitType;
 
                     /**
                      * @return The value
                      */
-                    public float getValue() {
+                    public String getValue() {
                         return value;
                     }
 
                     /**
                      * @param value The Value
                      */
-                    public void setValue(float value) {
+                    public void setValue(String value) {
                         this.value = value;
                     }
 
@@ -1337,14 +1337,14 @@ public class AccuWeatherCurrentWeatherData {
                     /**
                      * @return The unitType
                      */
-                    public float getUnitType() {
+                    public String getUnitType() {
                         return unitType;
                     }
 
                     /**
                      * @param unitType The UnitType
                      */
-                    public void setUnitType(float unitType) {
+                    public void setUnitType(String unitType) {
                         this.unitType = unitType;
                     }
 
@@ -1354,25 +1354,25 @@ public class AccuWeatherCurrentWeatherData {
 
                     @SerializedName("Value")
                     @Expose
-                    private float value;
+                    private String value;
                     @SerializedName("Unit")
                     @Expose
                     private String unit;
                     @SerializedName("UnitType")
                     @Expose
-                    private float unitType;
+                    private String unitType;
 
                     /**
                      * @return The value
                      */
-                    public float getValue() {
+                    public String getValue() {
                         return value;
                     }
 
                     /**
                      * @param value The Value
                      */
-                    public void setValue(float value) {
+                    public void setValue(String value) {
                         this.value = value;
                     }
 
@@ -1393,14 +1393,14 @@ public class AccuWeatherCurrentWeatherData {
                     /**
                      * @return The unitType
                      */
-                    public float getUnitType() {
+                    public String getUnitType() {
                         return unitType;
                     }
 
                     /**
                      * @param unitType The UnitType
                      */
-                    public void setUnitType(float unitType) {
+                    public void setUnitType(String unitType) {
                         this.unitType = unitType;
                     }
 
@@ -1411,25 +1411,25 @@ public class AccuWeatherCurrentWeatherData {
 
                     @SerializedName("Value")
                     @Expose
-                    private float value;
+                    private String value;
                     @SerializedName("Unit")
                     @Expose
                     private String unit;
                     @SerializedName("UnitType")
                     @Expose
-                    private float unitType;
+                    private String unitType;
 
                     /**
                      * @return The value
                      */
-                    public float getValue() {
+                    public String getValue() {
                         return value;
                     }
 
                     /**
                      * @param value The Value
                      */
-                    public void setValue(float value) {
+                    public void setValue(String value) {
                         this.value = value;
                     }
 
@@ -1450,14 +1450,14 @@ public class AccuWeatherCurrentWeatherData {
                     /**
                      * @return The unitType
                      */
-                    public float getUnitType() {
+                    public String getUnitType() {
                         return unitType;
                     }
 
                     /**
                      * @param unitType The UnitType
                      */
-                    public void setUnitType(float unitType) {
+                    public void setUnitType(String unitType) {
                         this.unitType = unitType;
                     }
 
@@ -1468,25 +1468,25 @@ public class AccuWeatherCurrentWeatherData {
 
                     @SerializedName("Value")
                     @Expose
-                    private float value;
+                    private String value;
                     @SerializedName("Unit")
                     @Expose
                     private String unit;
                     @SerializedName("UnitType")
                     @Expose
-                    private float unitType;
+                    private String unitType;
 
                     /**
                      * @return The value
                      */
-                    public float getValue() {
+                    public String getValue() {
                         return value;
                     }
 
                     /**
                      * @param value The Value
                      */
-                    public void setValue(float value) {
+                    public void setValue(String value) {
                         this.value = value;
                     }
 
@@ -1507,14 +1507,14 @@ public class AccuWeatherCurrentWeatherData {
                     /**
                      * @return The unitType
                      */
-                    public float getUnitType() {
+                    public String getUnitType() {
                         return unitType;
                     }
 
                     /**
                      * @param unitType The UnitType
                      */
-                    public void setUnitType(float unitType) {
+                    public void setUnitType(String unitType) {
                         this.unitType = unitType;
                     }
 
@@ -1525,25 +1525,25 @@ public class AccuWeatherCurrentWeatherData {
 
                     @SerializedName("Value")
                     @Expose
-                    private float value;
+                    private String value;
                     @SerializedName("Unit")
                     @Expose
                     private String unit;
                     @SerializedName("UnitType")
                     @Expose
-                    private float unitType;
+                    private String unitType;
 
                     /**
                      * @return The value
                      */
-                    public float getValue() {
+                    public String getValue() {
                         return value;
                     }
 
                     /**
                      * @param value The Value
                      */
-                    public void setValue(float value) {
+                    public void setValue(String value) {
                         this.value = value;
                     }
 
@@ -1564,14 +1564,14 @@ public class AccuWeatherCurrentWeatherData {
                     /**
                      * @return The unitType
                      */
-                    public float getUnitType() {
+                    public String getUnitType() {
                         return unitType;
                     }
 
                     /**
                      * @param unitType The UnitType
                      */
-                    public void setUnitType(float unitType) {
+                    public void setUnitType(String unitType) {
                         this.unitType = unitType;
                     }
 
@@ -1581,25 +1581,25 @@ public class AccuWeatherCurrentWeatherData {
 
                     @SerializedName("Value")
                     @Expose
-                    private float value;
+                    private String value;
                     @SerializedName("Unit")
                     @Expose
                     private String unit;
                     @SerializedName("UnitType")
                     @Expose
-                    private float unitType;
+                    private String unitType;
 
                     /**
                      * @return The value
                      */
-                    public float getValue() {
+                    public String getValue() {
                         return value;
                     }
 
                     /**
                      * @param value The Value
                      */
-                    public void setValue(float value) {
+                    public void setValue(String value) {
                         this.value = value;
                     }
 
@@ -1620,14 +1620,14 @@ public class AccuWeatherCurrentWeatherData {
                     /**
                      * @return The unitType
                      */
-                    public float getUnitType() {
+                    public String getUnitType() {
                         return unitType;
                     }
 
                     /**
                      * @param unitType The UnitType
                      */
-                    public void setUnitType(float unitType) {
+                    public void setUnitType(String unitType) {
                         this.unitType = unitType;
                     }
 
@@ -1638,25 +1638,25 @@ public class AccuWeatherCurrentWeatherData {
 
                     @SerializedName("Value")
                     @Expose
-                    private float value;
+                    private String value;
                     @SerializedName("Unit")
                     @Expose
                     private String unit;
                     @SerializedName("UnitType")
                     @Expose
-                    private float unitType;
+                    private String unitType;
 
                     /**
                      * @return The value
                      */
-                    public float getValue() {
+                    public String getValue() {
                         return value;
                     }
 
                     /**
                      * @param value The Value
                      */
-                    public void setValue(float value) {
+                    public void setValue(String value) {
                         this.value = value;
                     }
 
@@ -1677,14 +1677,14 @@ public class AccuWeatherCurrentWeatherData {
                     /**
                      * @return The unitType
                      */
-                    public float getUnitType() {
+                    public String getUnitType() {
                         return unitType;
                     }
 
                     /**
                      * @param unitType The UnitType
                      */
-                    public void setUnitType(float unitType) {
+                    public void setUnitType(String unitType) {
                         this.unitType = unitType;
                     }
 
@@ -1695,25 +1695,25 @@ public class AccuWeatherCurrentWeatherData {
 
                     @SerializedName("Value")
                     @Expose
-                    private float value;
+                    private String value;
                     @SerializedName("Unit")
                     @Expose
                     private String unit;
                     @SerializedName("UnitType")
                     @Expose
-                    private float unitType;
+                    private String unitType;
 
                     /**
                      * @return The value
                      */
-                    public float getValue() {
+                    public String getValue() {
                         return value;
                     }
 
                     /**
                      * @param value The Value
                      */
-                    public void setValue(float value) {
+                    public void setValue(String value) {
                         this.value = value;
                     }
 
@@ -1734,14 +1734,14 @@ public class AccuWeatherCurrentWeatherData {
                     /**
                      * @return The unitType
                      */
-                    public float getUnitType() {
+                    public String getUnitType() {
                         return unitType;
                     }
 
                     /**
                      * @param unitType The UnitType
                      */
-                    public void setUnitType(float unitType) {
+                    public void setUnitType(String unitType) {
                         this.unitType = unitType;
                     }
 
@@ -1751,25 +1751,25 @@ public class AccuWeatherCurrentWeatherData {
 
                     @SerializedName("Value")
                     @Expose
-                    private float value;
+                    private String value;
                     @SerializedName("Unit")
                     @Expose
                     private String unit;
                     @SerializedName("UnitType")
                     @Expose
-                    private float unitType;
+                    private String unitType;
 
                     /**
                      * @return The value
                      */
-                    public float getValue() {
+                    public String getValue() {
                         return value;
                     }
 
                     /**
                      * @param value The Value
                      */
-                    public void setValue(float value) {
+                    public void setValue(String value) {
                         this.value = value;
                     }
 
@@ -1790,14 +1790,14 @@ public class AccuWeatherCurrentWeatherData {
                     /**
                      * @return The unitType
                      */
-                    public float getUnitType() {
+                    public String getUnitType() {
                         return unitType;
                     }
 
                     /**
                      * @param unitType The UnitType
                      */
-                    public void setUnitType(float unitType) {
+                    public void setUnitType(String unitType) {
                         this.unitType = unitType;
                     }
 
@@ -1813,7 +1813,7 @@ public class AccuWeatherCurrentWeatherData {
                     private String unit;
                     @SerializedName("UnitType")
                     @Expose
-                    private float unitType;
+                    private String unitType;
 
                     /**
                      * @return The value
@@ -1846,14 +1846,14 @@ public class AccuWeatherCurrentWeatherData {
                     /**
                      * @return The unitType
                      */
-                    public float getUnitType() {
+                    public String getUnitType() {
                         return unitType;
                     }
 
                     /**
                      * @param unitType The UnitType
                      */
-                    public void setUnitType(float unitType) {
+                    public void setUnitType(String unitType) {
                         this.unitType = unitType;
                     }
 
@@ -1870,7 +1870,7 @@ public class AccuWeatherCurrentWeatherData {
                     private String unit;
                     @SerializedName("UnitType")
                     @Expose
-                    private float unitType;
+                    private String unitType;
 
                     /**
                      * @return The value
@@ -1903,14 +1903,14 @@ public class AccuWeatherCurrentWeatherData {
                     /**
                      * @return The unitType
                      */
-                    public float getUnitType() {
+                    public String getUnitType() {
                         return unitType;
                     }
 
                     /**
                      * @param unitType The UnitType
                      */
-                    public void setUnitType(float unitType) {
+                    public void setUnitType(String unitType) {
                         this.unitType = unitType;
                     }
 
@@ -1921,25 +1921,25 @@ public class AccuWeatherCurrentWeatherData {
 
                     @SerializedName("Value")
                     @Expose
-                    private float value;
+                    private String value;
                     @SerializedName("Unit")
                     @Expose
                     private String unit;
                     @SerializedName("UnitType")
                     @Expose
-                    private float unitType;
+                    private String unitType;
 
                     /**
                      * @return The value
                      */
-                    public float getValue() {
+                    public String getValue() {
                         return value;
                     }
 
                     /**
                      * @param value The Value
                      */
-                    public void setValue(float value) {
+                    public void setValue(String value) {
                         this.value = value;
                     }
 
@@ -1960,14 +1960,14 @@ public class AccuWeatherCurrentWeatherData {
                     /**
                      * @return The unitType
                      */
-                    public float getUnitType() {
+                    public String getUnitType() {
                         return unitType;
                     }
 
                     /**
                      * @param unitType The UnitType
                      */
-                    public void setUnitType(float unitType) {
+                    public void setUnitType(String unitType) {
                         this.unitType = unitType;
                     }
 
@@ -1978,25 +1978,25 @@ public class AccuWeatherCurrentWeatherData {
 
                     @SerializedName("Value")
                     @Expose
-                    private float value;
+                    private String value;
                     @SerializedName("Unit")
                     @Expose
                     private String unit;
                     @SerializedName("UnitType")
                     @Expose
-                    private float unitType;
+                    private String unitType;
 
                     /**
                      * @return The value
                      */
-                    public float getValue() {
+                    public String getValue() {
                         return value;
                     }
 
                     /**
                      * @param value The Value
                      */
-                    public void setValue(float value) {
+                    public void setValue(String value) {
                         this.value = value;
                     }
 
@@ -2017,14 +2017,14 @@ public class AccuWeatherCurrentWeatherData {
                     /**
                      * @return The unitType
                      */
-                    public float getUnitType() {
+                    public String getUnitType() {
                         return unitType;
                     }
 
                     /**
                      * @param unitType The UnitType
                      */
-                    public void setUnitType(float unitType) {
+                    public void setUnitType(String unitType) {
                         this.unitType = unitType;
                     }
 
@@ -2035,25 +2035,25 @@ public class AccuWeatherCurrentWeatherData {
 
                     @SerializedName("Value")
                     @Expose
-                    private float value;
+                    private String value;
                     @SerializedName("Unit")
                     @Expose
                     private String unit;
                     @SerializedName("UnitType")
                     @Expose
-                    private float unitType;
+                    private String unitType;
 
                     /**
                      * @return The value
                      */
-                    public float getValue() {
+                    public String getValue() {
                         return value;
                     }
 
                     /**
                      * @param value The Value
                      */
-                    public void setValue(float value) {
+                    public void setValue(String value) {
                         this.value = value;
                     }
 
@@ -2074,14 +2074,14 @@ public class AccuWeatherCurrentWeatherData {
                     /**
                      * @return The unitType
                      */
-                    public float getUnitType() {
+                    public String getUnitType() {
                         return unitType;
                     }
 
                     /**
                      * @param unitType The UnitType
                      */
-                    public void setUnitType(float unitType) {
+                    public void setUnitType(String unitType) {
                         this.unitType = unitType;
                     }
 
@@ -2092,25 +2092,25 @@ public class AccuWeatherCurrentWeatherData {
 
                     @SerializedName("Value")
                     @Expose
-                    private float value;
+                    private String value;
                     @SerializedName("Unit")
                     @Expose
                     private String unit;
                     @SerializedName("UnitType")
                     @Expose
-                    private float unitType;
+                    private String unitType;
 
                     /**
                      * @return The value
                      */
-                    public float getValue() {
+                    public String getValue() {
                         return value;
                     }
 
                     /**
                      * @param value The Value
                      */
-                    public void setValue(float value) {
+                    public void setValue(String value) {
                         this.value = value;
                     }
 
@@ -2131,14 +2131,14 @@ public class AccuWeatherCurrentWeatherData {
                     /**
                      * @return The unitType
                      */
-                    public float getUnitType() {
+                    public String getUnitType() {
                         return unitType;
                     }
 
                     /**
                      * @param unitType The UnitType
                      */
-                    public void setUnitType(float unitType) {
+                    public void setUnitType(String unitType) {
                         this.unitType = unitType;
                     }
 
@@ -2149,25 +2149,25 @@ public class AccuWeatherCurrentWeatherData {
 
                     @SerializedName("Value")
                     @Expose
-                    private float value;
+                    private String value;
                     @SerializedName("Unit")
                     @Expose
                     private String unit;
                     @SerializedName("UnitType")
                     @Expose
-                    private float unitType;
+                    private String unitType;
 
                     /**
                      * @return The value
                      */
-                    public float getValue() {
+                    public String getValue() {
                         return value;
                     }
 
                     /**
                      * @param value The Value
                      */
-                    public void setValue(float value) {
+                    public void setValue(String value) {
                         this.value = value;
                     }
 
@@ -2188,14 +2188,14 @@ public class AccuWeatherCurrentWeatherData {
                     /**
                      * @return The unitType
                      */
-                    public float getUnitType() {
+                    public String getUnitType() {
                         return unitType;
                     }
 
                     /**
                      * @param unitType The UnitType
                      */
-                    public void setUnitType(float unitType) {
+                    public void setUnitType(String unitType) {
                         this.unitType = unitType;
                     }
 
@@ -2206,25 +2206,25 @@ public class AccuWeatherCurrentWeatherData {
 
                     @SerializedName("Value")
                     @Expose
-                    private float value;
+                    private String value;
                     @SerializedName("Unit")
                     @Expose
                     private String unit;
                     @SerializedName("UnitType")
                     @Expose
-                    private float unitType;
+                    private String unitType;
 
                     /**
                      * @return The value
                      */
-                    public float getValue() {
+                    public String getValue() {
                         return value;
                     }
 
                     /**
                      * @param value The Value
                      */
-                    public void setValue(float value) {
+                    public void setValue(String value) {
                         this.value = value;
                     }
 
@@ -2245,14 +2245,14 @@ public class AccuWeatherCurrentWeatherData {
                     /**
                      * @return The unitType
                      */
-                    public float getUnitType() {
+                    public String getUnitType() {
                         return unitType;
                     }
 
                     /**
                      * @param unitType The UnitType
                      */
-                    public void setUnitType(float unitType) {
+                    public void setUnitType(String unitType) {
                         this.unitType = unitType;
                     }
 
@@ -2389,7 +2389,7 @@ public class AccuWeatherCurrentWeatherData {
                     private String unit;
                     @SerializedName("UnitType")
                     @Expose
-                    private float unitType;
+                    private String unitType;
 
                     /**
                      * @return The value
@@ -2422,14 +2422,14 @@ public class AccuWeatherCurrentWeatherData {
                     /**
                      * @return The unitType
                      */
-                    public float getUnitType() {
+                    public String getUnitType() {
                         return unitType;
                     }
 
                     /**
                      * @param unitType The UnitType
                      */
-                    public void setUnitType(float unitType) {
+                    public void setUnitType(String unitType) {
                         this.unitType = unitType;
                     }
 
@@ -2446,7 +2446,7 @@ public class AccuWeatherCurrentWeatherData {
                     private String unit;
                     @SerializedName("UnitType")
                     @Expose
-                    private float unitType;
+                    private String unitType;
 
                     /**
                      * @return The value
@@ -2479,14 +2479,14 @@ public class AccuWeatherCurrentWeatherData {
                     /**
                      * @return The unitType
                      */
-                    public float getUnitType() {
+                    public String getUnitType() {
                         return unitType;
                     }
 
                     /**
                      * @param unitType The UnitType
                      */
-                    public void setUnitType(float unitType) {
+                    public void setUnitType(String unitType) {
                         this.unitType = unitType;
                     }
 
@@ -2503,7 +2503,7 @@ public class AccuWeatherCurrentWeatherData {
                     private String unit;
                     @SerializedName("UnitType")
                     @Expose
-                    private float unitType;
+                    private String unitType;
 
                     /**
                      * @return The value
@@ -2536,14 +2536,14 @@ public class AccuWeatherCurrentWeatherData {
                     /**
                      * @return The unitType
                      */
-                    public float getUnitType() {
+                    public String getUnitType() {
                         return unitType;
                     }
 
                     /**
                      * @param unitType The UnitType
                      */
-                    public void setUnitType(float unitType) {
+                    public void setUnitType(String unitType) {
                         this.unitType = unitType;
                     }
 
@@ -2560,7 +2560,7 @@ public class AccuWeatherCurrentWeatherData {
                     private String unit;
                     @SerializedName("UnitType")
                     @Expose
-                    private float unitType;
+                    private String unitType;
 
                     /**
                      * @return The value
@@ -2593,14 +2593,14 @@ public class AccuWeatherCurrentWeatherData {
                     /**
                      * @return The unitType
                      */
-                    public float getUnitType() {
+                    public String getUnitType() {
                         return unitType;
                     }
 
                     /**
                      * @param unitType The UnitType
                      */
-                    public void setUnitType(float unitType) {
+                    public void setUnitType(String unitType) {
                         this.unitType = unitType;
                     }
 
@@ -2617,7 +2617,7 @@ public class AccuWeatherCurrentWeatherData {
                     private String unit;
                     @SerializedName("UnitType")
                     @Expose
-                    private float unitType;
+                    private String unitType;
 
                     /**
                      * @return The value
@@ -2650,14 +2650,14 @@ public class AccuWeatherCurrentWeatherData {
                     /**
                      * @return The unitType
                      */
-                    public float getUnitType() {
+                    public String getUnitType() {
                         return unitType;
                     }
 
                     /**
                      * @param unitType The UnitType
                      */
-                    public void setUnitType(float unitType) {
+                    public void setUnitType(String unitType) {
                         this.unitType = unitType;
                     }
 
@@ -2674,7 +2674,7 @@ public class AccuWeatherCurrentWeatherData {
                     private String unit;
                     @SerializedName("UnitType")
                     @Expose
-                    private float unitType;
+                    private String unitType;
 
                     /**
                      * @return The value
@@ -2707,14 +2707,14 @@ public class AccuWeatherCurrentWeatherData {
                     /**
                      * @return The unitType
                      */
-                    public float getUnitType() {
+                    public String getUnitType() {
                         return unitType;
                     }
 
                     /**
                      * @param unitType The UnitType
                      */
-                    public void setUnitType(float unitType) {
+                    public void setUnitType(String unitType) {
                         this.unitType = unitType;
                     }
 
@@ -2725,25 +2725,25 @@ public class AccuWeatherCurrentWeatherData {
 
                     @SerializedName("Value")
                     @Expose
-                    private Double value;
+                    private String value;
                     @SerializedName("Unit")
                     @Expose
                     private String unit;
                     @SerializedName("UnitType")
                     @Expose
-                    private float unitType;
+                    private String unitType;
 
                     /**
                      * @return The value
                      */
-                    public Double getValue() {
+                    public String getValue() {
                         return value;
                     }
 
                     /**
                      * @param value The Value
                      */
-                    public void setValue(Double value) {
+                    public void setValue(String value) {
                         this.value = value;
                     }
 
@@ -2764,14 +2764,14 @@ public class AccuWeatherCurrentWeatherData {
                     /**
                      * @return The unitType
                      */
-                    public float getUnitType() {
+                    public String getUnitType() {
                         return unitType;
                     }
 
                     /**
                      * @param unitType The UnitType
                      */
-                    public void setUnitType(float unitType) {
+                    public void setUnitType(String unitType) {
                         this.unitType = unitType;
                     }
 
@@ -2782,25 +2782,25 @@ public class AccuWeatherCurrentWeatherData {
 
                     @SerializedName("Value")
                     @Expose
-                    private float value;
+                    private String value;
                     @SerializedName("Unit")
                     @Expose
                     private String unit;
                     @SerializedName("UnitType")
                     @Expose
-                    private float unitType;
+                    private String unitType;
 
                     /**
                      * @return The value
                      */
-                    public float getValue() {
+                    public String getValue() {
                         return value;
                     }
 
                     /**
                      * @param value The Value
                      */
-                    public void setValue(float value) {
+                    public void setValue(String value) {
                         this.value = value;
                     }
 
@@ -2821,14 +2821,14 @@ public class AccuWeatherCurrentWeatherData {
                     /**
                      * @return The unitType
                      */
-                    public float getUnitType() {
+                    public String getUnitType() {
                         return unitType;
                     }
 
                     /**
                      * @param unitType The UnitType
                      */
-                    public void setUnitType(float unitType) {
+                    public void setUnitType(String unitType) {
                         this.unitType = unitType;
                     }
 
@@ -2839,25 +2839,25 @@ public class AccuWeatherCurrentWeatherData {
 
                     @SerializedName("Value")
                     @Expose
-                    private float value;
+                    private String value;
                     @SerializedName("Unit")
                     @Expose
                     private String unit;
                     @SerializedName("UnitType")
                     @Expose
-                    private float unitType;
+                    private String unitType;
 
                     /**
                      * @return The value
                      */
-                    public float getValue() {
+                    public String getValue() {
                         return value;
                     }
 
                     /**
                      * @param value The Value
                      */
-                    public void setValue(float value) {
+                    public void setValue(String value) {
                         this.value = value;
                     }
 
@@ -2878,14 +2878,14 @@ public class AccuWeatherCurrentWeatherData {
                     /**
                      * @return The unitType
                      */
-                    public float getUnitType() {
+                    public String getUnitType() {
                         return unitType;
                     }
 
                     /**
                      * @param unitType The UnitType
                      */
-                    public void setUnitType(float unitType) {
+                    public void setUnitType(String unitType) {
                         this.unitType = unitType;
                     }
 
@@ -2896,25 +2896,25 @@ public class AccuWeatherCurrentWeatherData {
 
                     @SerializedName("Value")
                     @Expose
-                    private float value;
+                    private String value;
                     @SerializedName("Unit")
                     @Expose
                     private String unit;
                     @SerializedName("UnitType")
                     @Expose
-                    private float unitType;
+                    private String unitType;
 
                     /**
                      * @return The value
                      */
-                    public float getValue() {
+                    public String getValue() {
                         return value;
                     }
 
                     /**
                      * @param value The Value
                      */
-                    public void setValue(float value) {
+                    public void setValue(String value) {
                         this.value = value;
                     }
 
@@ -2935,14 +2935,14 @@ public class AccuWeatherCurrentWeatherData {
                     /**
                      * @return The unitType
                      */
-                    public float getUnitType() {
+                    public String getUnitType() {
                         return unitType;
                     }
 
                     /**
                      * @param unitType The UnitType
                      */
-                    public void setUnitType(float unitType) {
+                    public void setUnitType(String unitType) {
                         this.unitType = unitType;
                     }
 
@@ -2959,7 +2959,7 @@ public class AccuWeatherCurrentWeatherData {
                     private String unit;
                     @SerializedName("UnitType")
                     @Expose
-                    private float unitType;
+                    private String unitType;
 
                     /**
                      * @return The value
@@ -2992,14 +2992,14 @@ public class AccuWeatherCurrentWeatherData {
                     /**
                      * @return The unitType
                      */
-                    public float getUnitType() {
+                    public String getUnitType() {
                         return unitType;
                     }
 
                     /**
                      * @param unitType The UnitType
                      */
-                    public void setUnitType(float unitType) {
+                    public void setUnitType(String unitType) {
                         this.unitType = unitType;
                     }
 
@@ -3016,7 +3016,7 @@ public class AccuWeatherCurrentWeatherData {
                     private String unit;
                     @SerializedName("UnitType")
                     @Expose
-                    private float unitType;
+                    private String unitType;
 
                     /**
                      * @return The value
@@ -3049,14 +3049,14 @@ public class AccuWeatherCurrentWeatherData {
                     /**
                      * @return The unitType
                      */
-                    public float getUnitType() {
+                    public String getUnitType() {
                         return unitType;
                     }
 
                     /**
                      * @param unitType The UnitType
                      */
-                    public void setUnitType(float unitType) {
+                    public void setUnitType(String unitType) {
                         this.unitType = unitType;
                     }
 
@@ -3073,7 +3073,7 @@ public class AccuWeatherCurrentWeatherData {
                     private String unit;
                     @SerializedName("UnitType")
                     @Expose
-                    private float unitType;
+                    private String unitType;
 
                     /**
                      * @return The value
@@ -3106,14 +3106,14 @@ public class AccuWeatherCurrentWeatherData {
                     /**
                      * @return The unitType
                      */
-                    public float getUnitType() {
+                    public String getUnitType() {
                         return unitType;
                     }
 
                     /**
                      * @param unitType The UnitType
                      */
-                    public void setUnitType(float unitType) {
+                    public void setUnitType(String unitType) {
                         this.unitType = unitType;
                     }
 
@@ -3124,25 +3124,25 @@ public class AccuWeatherCurrentWeatherData {
 
                     @SerializedName("Value")
                     @Expose
-                    private float value;
+                    private String value;
                     @SerializedName("Unit")
                     @Expose
                     private String unit;
                     @SerializedName("UnitType")
                     @Expose
-                    private float unitType;
+                    private String unitType;
 
                     /**
                      * @return The value
                      */
-                    public float getValue() {
+                    public String getValue() {
                         return value;
                     }
 
                     /**
                      * @param value The Value
                      */
-                    public void setValue(float value) {
+                    public void setValue(String value) {
                         this.value = value;
                     }
 
@@ -3163,14 +3163,14 @@ public class AccuWeatherCurrentWeatherData {
                     /**
                      * @return The unitType
                      */
-                    public float getUnitType() {
+                    public String getUnitType() {
                         return unitType;
                     }
 
                     /**
                      * @param unitType The UnitType
                      */
-                    public void setUnitType(float unitType) {
+                    public void setUnitType(String unitType) {
                         this.unitType = unitType;
                     }
 
@@ -3181,25 +3181,25 @@ public class AccuWeatherCurrentWeatherData {
 
                     @SerializedName("Value")
                     @Expose
-                    private float value;
+                    private String value;
                     @SerializedName("Unit")
                     @Expose
                     private String unit;
                     @SerializedName("UnitType")
                     @Expose
-                    private float unitType;
+                    private String unitType;
 
                     /**
                      * @return The value
                      */
-                    public float getValue() {
+                    public String getValue() {
                         return value;
                     }
 
                     /**
                      * @param value The Value
                      */
-                    public void setValue(float value) {
+                    public void setValue(String value) {
                         this.value = value;
                     }
 
@@ -3220,14 +3220,14 @@ public class AccuWeatherCurrentWeatherData {
                     /**
                      * @return The unitType
                      */
-                    public float getUnitType() {
+                    public String getUnitType() {
                         return unitType;
                     }
 
                     /**
                      * @param unitType The UnitType
                      */
-                    public void setUnitType(float unitType) {
+                    public void setUnitType(String unitType) {
                         this.unitType = unitType;
                     }
 
@@ -3238,25 +3238,25 @@ public class AccuWeatherCurrentWeatherData {
 
                     @SerializedName("Value")
                     @Expose
-                    private float value;
+                    private String value;
                     @SerializedName("Unit")
                     @Expose
                     private String unit;
                     @SerializedName("UnitType")
                     @Expose
-                    private float unitType;
+                    private String unitType;
 
                     /**
                      * @return The value
                      */
-                    public float getValue() {
+                    public String getValue() {
                         return value;
                     }
 
                     /**
                      * @param value The Value
                      */
-                    public void setValue(float value) {
+                    public void setValue(String value) {
                         this.value = value;
                     }
 
@@ -3277,14 +3277,14 @@ public class AccuWeatherCurrentWeatherData {
                     /**
                      * @return The unitType
                      */
-                    public float getUnitType() {
+                    public String getUnitType() {
                         return unitType;
                     }
 
                     /**
                      * @param unitType The UnitType
                      */
-                    public void setUnitType(float unitType) {
+                    public void setUnitType(String unitType) {
                         this.unitType = unitType;
                     }
 
@@ -3295,25 +3295,25 @@ public class AccuWeatherCurrentWeatherData {
 
                     @SerializedName("Value")
                     @Expose
-                    private float value;
+                    private String value;
                     @SerializedName("Unit")
                     @Expose
                     private String unit;
                     @SerializedName("UnitType")
                     @Expose
-                    private float unitType;
+                    private String unitType;
 
                     /**
                      * @return The value
                      */
-                    public float getValue() {
+                    public String getValue() {
                         return value;
                     }
 
                     /**
                      * @param value The Value
                      */
-                    public void setValue(float value) {
+                    public void setValue(String value) {
                         this.value = value;
                     }
 
@@ -3334,14 +3334,14 @@ public class AccuWeatherCurrentWeatherData {
                     /**
                      * @return The unitType
                      */
-                    public float getUnitType() {
+                    public String getUnitType() {
                         return unitType;
                     }
 
                     /**
                      * @param unitType The UnitType
                      */
-                    public void setUnitType(float unitType) {
+                    public void setUnitType(String unitType) {
                         this.unitType = unitType;
                     }
 
@@ -3352,25 +3352,25 @@ public class AccuWeatherCurrentWeatherData {
 
                     @SerializedName("Value")
                     @Expose
-                    private float value;
+                    private String value;
                     @SerializedName("Unit")
                     @Expose
                     private String unit;
                     @SerializedName("UnitType")
                     @Expose
-                    private float unitType;
+                    private String unitType;
 
                     /**
                      * @return The value
                      */
-                    public float getValue() {
+                    public String getValue() {
                         return value;
                     }
 
                     /**
                      * @param value The Value
                      */
-                    public void setValue(float value) {
+                    public void setValue(String value) {
                         this.value = value;
                     }
 
@@ -3391,14 +3391,14 @@ public class AccuWeatherCurrentWeatherData {
                     /**
                      * @return The unitType
                      */
-                    public float getUnitType() {
+                    public String getUnitType() {
                         return unitType;
                     }
 
                     /**
                      * @param unitType The UnitType
                      */
-                    public void setUnitType(float unitType) {
+                    public void setUnitType(String unitType) {
                         this.unitType = unitType;
                     }
 
@@ -3409,25 +3409,25 @@ public class AccuWeatherCurrentWeatherData {
 
                     @SerializedName("Value")
                     @Expose
-                    private float value;
+                    private String value;
                     @SerializedName("Unit")
                     @Expose
                     private String unit;
                     @SerializedName("UnitType")
                     @Expose
-                    private float unitType;
+                    private String unitType;
 
                     /**
                      * @return The value
                      */
-                    public float getValue() {
+                    public String getValue() {
                         return value;
                     }
 
                     /**
                      * @param value The Value
                      */
-                    public void setValue(float value) {
+                    public void setValue(String value) {
                         this.value = value;
                     }
 
@@ -3448,14 +3448,14 @@ public class AccuWeatherCurrentWeatherData {
                     /**
                      * @return The unitType
                      */
-                    public float getUnitType() {
+                    public String getUnitType() {
                         return unitType;
                     }
 
                     /**
                      * @param unitType The UnitType
                      */
-                    public void setUnitType(float unitType) {
+                    public void setUnitType(String unitType) {
                         this.unitType = unitType;
                     }
 
@@ -3466,25 +3466,25 @@ public class AccuWeatherCurrentWeatherData {
 
                     @SerializedName("Value")
                     @Expose
-                    private float value;
+                    private String value;
                     @SerializedName("Unit")
                     @Expose
                     private String unit;
                     @SerializedName("UnitType")
                     @Expose
-                    private float unitType;
+                    private String unitType;
 
                     /**
                      * @return The value
                      */
-                    public float getValue() {
+                    public String getValue() {
                         return value;
                     }
 
                     /**
                      * @param value The Value
                      */
-                    public void setValue(float value) {
+                    public void setValue(String value) {
                         this.value = value;
                     }
 
@@ -3505,14 +3505,14 @@ public class AccuWeatherCurrentWeatherData {
                     /**
                      * @return The unitType
                      */
-                    public float getUnitType() {
+                    public String getUnitType() {
                         return unitType;
                     }
 
                     /**
                      * @param unitType The UnitType
                      */
-                    public void setUnitType(float unitType) {
+                    public void setUnitType(String unitType) {
                         this.unitType = unitType;
                     }
 
@@ -3523,25 +3523,25 @@ public class AccuWeatherCurrentWeatherData {
 
                     @SerializedName("Value")
                     @Expose
-                    private float value;
+                    private String value;
                     @SerializedName("Unit")
                     @Expose
                     private String unit;
                     @SerializedName("UnitType")
                     @Expose
-                    private float unitType;
+                    private String unitType;
 
                     /**
                      * @return The value
                      */
-                    public float getValue() {
+                    public String getValue() {
                         return value;
                     }
 
                     /**
                      * @param value The Value
                      */
-                    public void setValue(float value) {
+                    public void setValue(String value) {
                         this.value = value;
                     }
 
@@ -3562,14 +3562,14 @@ public class AccuWeatherCurrentWeatherData {
                     /**
                      * @return The unitType
                      */
-                    public float getUnitType() {
+                    public String getUnitType() {
                         return unitType;
                     }
 
                     /**
                      * @param unitType The UnitType
                      */
-                    public void setUnitType(float unitType) {
+                    public void setUnitType(String unitType) {
                         this.unitType = unitType;
                     }
 
@@ -3580,25 +3580,25 @@ public class AccuWeatherCurrentWeatherData {
 
                     @SerializedName("Value")
                     @Expose
-                    private float value;
+                    private String value;
                     @SerializedName("Unit")
                     @Expose
                     private String unit;
                     @SerializedName("UnitType")
                     @Expose
-                    private float unitType;
+                    private String unitType;
 
                     /**
                      * @return The value
                      */
-                    public float getValue() {
+                    public String getValue() {
                         return value;
                     }
 
                     /**
                      * @param value The Value
                      */
-                    public void setValue(float value) {
+                    public void setValue(String value) {
                         this.value = value;
                     }
 
@@ -3619,14 +3619,14 @@ public class AccuWeatherCurrentWeatherData {
                     /**
                      * @return The unitType
                      */
-                    public float getUnitType() {
+                    public String getUnitType() {
                         return unitType;
                     }
 
                     /**
                      * @param unitType The UnitType
                      */
-                    public void setUnitType(float unitType) {
+                    public void setUnitType(String unitType) {
                         this.unitType = unitType;
                     }
 
@@ -3643,7 +3643,7 @@ public class AccuWeatherCurrentWeatherData {
                     private String unit;
                     @SerializedName("UnitType")
                     @Expose
-                    private float unitType;
+                    private String unitType;
 
                     /**
                      * @return The value
@@ -3676,14 +3676,14 @@ public class AccuWeatherCurrentWeatherData {
                     /**
                      * @return The unitType
                      */
-                    public float getUnitType() {
+                    public String getUnitType() {
                         return unitType;
                     }
 
                     /**
                      * @param unitType The UnitType
                      */
-                    public void setUnitType(float unitType) {
+                    public void setUnitType(String unitType) {
                         this.unitType = unitType;
                     }
 
@@ -3700,7 +3700,7 @@ public class AccuWeatherCurrentWeatherData {
                     private String unit;
                     @SerializedName("UnitType")
                     @Expose
-                    private float unitType;
+                    private String unitType;
 
                     /**
                      * @return The value
@@ -3733,14 +3733,14 @@ public class AccuWeatherCurrentWeatherData {
                     /**
                      * @return The unitType
                      */
-                    public float getUnitType() {
+                    public String getUnitType() {
                         return unitType;
                     }
 
                     /**
                      * @param unitType The UnitType
                      */
-                    public void setUnitType(float unitType) {
+                    public void setUnitType(String unitType) {
                         this.unitType = unitType;
                     }
 
@@ -3757,7 +3757,7 @@ public class AccuWeatherCurrentWeatherData {
                     private String unit;
                     @SerializedName("UnitType")
                     @Expose
-                    private float unitType;
+                    private String unitType;
 
                     /**
                      * @return The value
@@ -3790,14 +3790,14 @@ public class AccuWeatherCurrentWeatherData {
                     /**
                      * @return The unitType
                      */
-                    public float getUnitType() {
+                    public String getUnitType() {
                         return unitType;
                     }
 
                     /**
                      * @param unitType The UnitType
                      */
-                    public void setUnitType(float unitType) {
+                    public void setUnitType(String unitType) {
                         this.unitType = unitType;
                     }
 
@@ -3814,7 +3814,7 @@ public class AccuWeatherCurrentWeatherData {
                     private String unit;
                     @SerializedName("UnitType")
                     @Expose
-                    private float unitType;
+                    private String unitType;
 
                     /**
                      * @return The value
@@ -3847,14 +3847,14 @@ public class AccuWeatherCurrentWeatherData {
                     /**
                      * @return The unitType
                      */
-                    public float getUnitType() {
+                    public String getUnitType() {
                         return unitType;
                     }
 
                     /**
                      * @param unitType The UnitType
                      */
-                    public void setUnitType(float unitType) {
+                    public void setUnitType(String unitType) {
                         this.unitType = unitType;
                     }
 
@@ -3871,7 +3871,7 @@ public class AccuWeatherCurrentWeatherData {
                     private String unit;
                     @SerializedName("UnitType")
                     @Expose
-                    private float unitType;
+                    private String unitType;
 
                     /**
                      * @return The value
@@ -3904,14 +3904,14 @@ public class AccuWeatherCurrentWeatherData {
                     /**
                      * @return The unitType
                      */
-                    public float getUnitType() {
+                    public String getUnitType() {
                         return unitType;
                     }
 
                     /**
                      * @param unitType The UnitType
                      */
-                    public void setUnitType(float unitType) {
+                    public void setUnitType(String unitType) {
                         this.unitType = unitType;
                     }
 
@@ -3928,7 +3928,7 @@ public class AccuWeatherCurrentWeatherData {
                     private String unit;
                     @SerializedName("UnitType")
                     @Expose
-                    private float unitType;
+                    private String unitType;
 
                     /**
                      * @return The value
@@ -3961,14 +3961,14 @@ public class AccuWeatherCurrentWeatherData {
                     /**
                      * @return The unitType
                      */
-                    public float getUnitType() {
+                    public String getUnitType() {
                         return unitType;
                     }
 
                     /**
                      * @param unitType The UnitType
                      */
-                    public void setUnitType(float unitType) {
+                    public void setUnitType(String unitType) {
                         this.unitType = unitType;
                     }
 
