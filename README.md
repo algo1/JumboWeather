@@ -18,6 +18,7 @@
 
 	Optimization:
 		All background image requests are made based on the combination of current network type and device resolution type .
+		Priorities given to requests in order of importance . Retry policy can also be added . 
 
 	Optimizations that can be made :
 	
@@ -29,7 +30,7 @@
 		             Search for relevant Api
 
 	Areas NOT focused  : Null pointer checks
-				             Animations and UI
+		             Animations (which is must for background image transistion) and UI
 
 	Developed and tested on (FYI): Samsung Galaxy Note 4 , Android 23
 
