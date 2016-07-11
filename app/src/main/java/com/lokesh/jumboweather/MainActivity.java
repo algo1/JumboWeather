@@ -5,6 +5,7 @@ import android.content.pm.PackageManager;
 import android.location.Location;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -43,9 +44,12 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
 
     private LocationRequest mLocationRequest;
     private GoogleApiClient mGoogleApiClient;
+    private CountDownTimer refreshTimer;
+
     private String MAP_TAG = "MAP";
     private String NETWORK_TAG = "NETWORK";
     private String DEEPLINK_TAG = "DEEPLINK";
+    private String REFRESH_TAG = "REFRESH";
 
 
     // Ui References
@@ -88,6 +92,46 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
 
         }
 
+        setupRefreshTimer();
+
+    }
+
+    public void setupRefreshTimer() {
+
+        Log.d(REFRESH_TAG, "Refresh Timer set up done");
+
+        refreshTimer = new CountDownTimer(60 * 1000, 60 * 1000) {
+            @Override
+            public void onTick(long l) {
+
+            }
+
+            @Override
+            public void onFinish() {
+                if (!isFinishing()) {
+                    refreshScreen();
+                    refreshTimer.cancel();
+                    refreshTimer.start();
+                    Log.d(REFRESH_TAG, "Refresh Timer restarted");
+                }
+            }
+        };
+
+        refreshTimer.start();
+    }
+
+    @Override
+    protected void onDestroy() {
+        if (refreshTimer != null) {
+            refreshTimer.cancel();
+        }
+        super.onDestroy();
+    }
+
+
+    public void refreshScreen() {
+        Log.d(REFRESH_TAG, "Screen Refresh started");
+        onConnected(null);
     }
 
     public void handleDeeplink(Uri data) {
@@ -120,7 +164,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
         mLayoutManager = new LinearLayoutManager(this);
         dayforecastList.setLayoutManager(mLayoutManager);
 
-        dayforecastAdapter = new DayforecastAdapter(data);
+        dayforecastAdapter = new DayforecastAdapter(data, getApplicationContext());
         dayforecastList.setAdapter(dayforecastAdapter);
     }
 
@@ -131,7 +175,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
         hourLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         hourforecastList.setLayoutManager(hourLayoutManager);
 
-        hourforecastAdapter = new HourforecastAdapter(hourdatum);
+        hourforecastAdapter = new HourforecastAdapter(hourdatum, getApplicationContext());
         hourforecastList.setAdapter(hourforecastAdapter);
 
     }
@@ -181,8 +225,9 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
         String visibility = data.getVisibility().getMetric().getValue();
         String uvIndex = data.getUVIndex();
         String uvIndexTest = data.getUVIndexText();
+        String icon = data.getWeatherIcon();
 
-        DetailRaven currentWeatherDetailsRaven = new DetailRaven(currentTemp, humidity, visibility, uvIndex, uvIndexTest, UserInformation.getLat(), UserInformation.getLng(), UserInformation.getUserLocation());
+        DetailRaven currentWeatherDetailsRaven = new DetailRaven(currentTemp, humidity, visibility, uvIndex, uvIndexTest, UserInformation.getLat(), UserInformation.getLng(), UserInformation.getUserLocation(), icon);
 
         enableDetailClick(currentWeatherDetailsRaven);
 

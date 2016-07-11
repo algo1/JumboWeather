@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/jumbo"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
@@ -35,7 +34,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/currentTime"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:gravity="center"
         android:hint="Current Weather in one word"
         android:textSize="18sp" />
@@ -45,7 +44,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/onewordWeather"
-        android:layout_marginTop="20dp">
+        android:layout_marginTop="10dp">
 
         <android.support.v7.widget.AppCompatTextView
             android:id="@+id/minTemp"
@@ -64,7 +63,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_gravity="bottom"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="20dp"
             android:layout_weight="1"
             android:gravity="center"
             android:hint="27"

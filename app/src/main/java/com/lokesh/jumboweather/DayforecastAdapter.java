@@ -1,12 +1,17 @@
 package com.lokesh.jumboweather;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.android.volley.toolbox.ImageLoader;
+import com.android.volley.toolbox.NetworkImageView;
 import com.lokesh.jumboweather.apiresponseobjects.AccuWeatherFivedayForecastResponse;
+import com.lokesh.jumboweather.network.NetworkInterface;
+import com.lokesh.jumboweather.utils.TimeUtils;
 
 /**
  * Created by lokeshponnada on 7/10/16.
@@ -15,6 +20,7 @@ public class DayforecastAdapter extends RecyclerView.Adapter<DayforecastAdapter.
 
 
     private AccuWeatherFivedayForecastResponse mDataset;
+    ImageLoader mImageLoader;
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
@@ -24,19 +30,21 @@ public class DayforecastAdapter extends RecyclerView.Adapter<DayforecastAdapter.
         public TextView day;
         public TextView minTemp;
         public TextView maxTemp;
+        public NetworkImageView weatherIcon;
 
         public ViewHolder(View v) {
             super(v);
             day = (TextView) v.findViewById(R.id.day);
             minTemp = (TextView) v.findViewById(R.id.minTemp);
             maxTemp = (TextView) v.findViewById(R.id.maxTemp);
-
+            weatherIcon = (NetworkImageView) v.findViewById(R.id.weatherIcon);
         }
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public DayforecastAdapter(AccuWeatherFivedayForecastResponse myDataset) {
+    public DayforecastAdapter(AccuWeatherFivedayForecastResponse myDataset, Context appContext) {
         mDataset = myDataset;
+        mImageLoader = VolleySingleton.getInstance(appContext).getImageLoader();
     }
 
 
@@ -57,9 +65,10 @@ public class DayforecastAdapter extends RecyclerView.Adapter<DayforecastAdapter.
     public void onBindViewHolder(ViewHolder holder, int position) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
+        holder.day.setText(TimeUtils.getDayFromEpochTime(mDataset.getDailyForecasts().get(position).getEpochDate()));
         holder.minTemp.setText(mDataset.getDailyForecasts().get(position).getTemperature().getMinimum().getValue());
         holder.maxTemp.setText(mDataset.getDailyForecasts().get(position).getTemperature().getMaximum().getValue());
-
+        holder.weatherIcon.setImageUrl(NetworkInterface.getWeatherIconUrl(mDataset.getDailyForecasts().get(position).getDay().getIcon()), mImageLoader);
     }
 
     // Return the size of your dataset (invoked by the layout manager)

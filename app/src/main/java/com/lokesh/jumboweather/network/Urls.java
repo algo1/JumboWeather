@@ -10,4 +10,5 @@ public class Urls {
     public static String accuweather_hourly_forecast = "http://dataservice.accuweather.com/forecasts/v1/hourly/12hour/";
     public static String accuweather_daily_forecast = "http://dataservice.accuweather.com/forecasts/v1/daily/5day/";
 
+    public static String accu_weather_icons = "https://apidev.accuweather.com/developers/Media/Default/WeatherIcons/";
 }

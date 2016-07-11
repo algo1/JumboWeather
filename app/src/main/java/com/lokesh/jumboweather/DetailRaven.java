@@ -21,9 +21,10 @@ public class DetailRaven implements Parcelable {
     private double userLat;
     private double userLng;
     private String userLocation;
+    private String icon;
 
 
-    public DetailRaven(String currentTemp, String humidity, String visibility, String uvIndex, String uvIndexTest, double userLat, double userLng, String userLocation) {
+    public DetailRaven(String currentTemp, String humidity, String visibility, String uvIndex, String uvIndexTest, double userLat, double userLng, String userLocation, String icon) {
         this.currentTemp = currentTemp;
         this.humidity = humidity;
         this.visibility = visibility;
@@ -32,7 +33,17 @@ public class DetailRaven implements Parcelable {
         this.userLat = userLat;
         this.userLng = userLng;
         this.userLocation = userLocation;
+        this.icon = icon;
     }
+
+    public String getIcon() {
+        return icon;
+    }
+
+    public void setIcon(String icon) {
+        this.icon = icon;
+    }
+
 
     public String getUserLocation() {
         return userLocation;
@@ -108,6 +119,7 @@ public class DetailRaven implements Parcelable {
         userLat = in.readDouble();
         userLng = in.readDouble();
         userLocation = in.readString();
+        icon = in.readString();
     }
 
     @Override
@@ -125,6 +137,7 @@ public class DetailRaven implements Parcelable {
         dest.writeDouble(userLat);
         dest.writeDouble(userLng);
         dest.writeString(userLocation);
+        dest.writeString(icon);
     }
 
     @SuppressWarnings("unused")

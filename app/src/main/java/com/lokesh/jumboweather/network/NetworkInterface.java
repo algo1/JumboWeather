@@ -1,5 +1,7 @@
 package com.lokesh.jumboweather.network;
 
+import android.text.TextUtils;
+
 import com.lokesh.jumboweather.appconstants.AppConstants;
 import com.lokesh.jumboweather.appconstants.UserInformation;
 
@@ -38,5 +40,19 @@ public class NetworkInterface {
         // Todo Add optional params
         baseUrl = baseUrl + "apikey=" + AppConstants.ACCUWEATHER_API_KEY + "&details=true";
         return baseUrl;
+    }
+
+    public static String getWeatherIconUrl(String iconNo) {
+        // Todo dirty hack
+
+        if (TextUtils.isEmpty(iconNo)) {
+            return null;
+        }
+
+        if (iconNo.length() == 1) {
+            iconNo = "0" + iconNo;
+        }
+        String url = Urls.accu_weather_icons + iconNo + "-s.png";
+        return url;
     }
 }

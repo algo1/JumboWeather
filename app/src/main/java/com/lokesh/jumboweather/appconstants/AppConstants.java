@@ -9,4 +9,6 @@ public class AppConstants {
     public static final String ACCUWEATHER_API_KEY = "nxzbm71fbxx8AMM5nBXbuETY825QAiZS";
 
     public static final int MY_PERMISSIONS_REQUEST_FINE_LOCATION = 255;
+
+    public static final long REFRESH_RATE_in_Millis = 30*60*1000;
 }

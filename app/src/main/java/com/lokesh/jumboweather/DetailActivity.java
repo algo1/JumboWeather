@@ -5,12 +5,15 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
+import com.android.volley.toolbox.ImageLoader;
+import com.android.volley.toolbox.NetworkImageView;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.lokesh.jumboweather.network.NetworkInterface;
 import com.lokesh.jumboweather.utils.TimeUtils;
 
 
@@ -20,6 +23,8 @@ public class DetailActivity extends AppCompatActivity implements OnMapReadyCallb
 
     private DetailRaven details;
     private GoogleMap mMap;
+    private ImageLoader mImageLoader;
+
 
     //Ui References
     private TextView currentLocation;
@@ -28,6 +33,7 @@ public class DetailActivity extends AppCompatActivity implements OnMapReadyCallb
     private TextView currentHumidity;
     private TextView currentVisibility;
     private TextView uvLevel;
+    private NetworkImageView tempImage;
 
 
     @Override
@@ -52,12 +58,16 @@ public class DetailActivity extends AppCompatActivity implements OnMapReadyCallb
     }
 
     public void bindUi() {
+
         currentLocation = (TextView) findViewById(R.id.currentLocation);
         currentTime = (TextView) findViewById(R.id.currentTime);
+        tempImage = (NetworkImageView) findViewById(R.id.tempImage);
         currenttempValue = (TextView) findViewById(R.id.currenttempValue);
         currentHumidity = (TextView) findViewById(R.id.currentHumidity);
         currentVisibility = (TextView) findViewById(R.id.currentVisibility);
         uvLevel = (TextView) findViewById(R.id.uvLevel);
+
+        mImageLoader = VolleySingleton.getInstance(this).getImageLoader();
 
     }
 
@@ -72,6 +82,10 @@ public class DetailActivity extends AppCompatActivity implements OnMapReadyCallb
         currentHumidity.setText(details.getHumidity() + "%");
         currentVisibility.setText(details.getVisibility() + " km");
         uvLevel.setText(details.getUvIndexTest() + " " + details.getUvIndex());
+
+        tempImage.setImageUrl(NetworkInterface.getWeatherIconUrl(details.getIcon()), mImageLoader);
+
+
     }
 
 

@@ -16,8 +16,15 @@ public class TimeUtils {
     }
 
     public static String getHourFromEpochTime(String epochTime) {
-        Date date = new Date(Long.valueOf(epochTime)*1000);
+        Date date = new Date(Long.valueOf(epochTime) * 1000);
         DateFormat format = new SimpleDateFormat("HH:mm");
+        String formatted = format.format(date);
+        return formatted;
+    }
+
+    public static String getDayFromEpochTime(String epochTime) {
+        Date date = new Date(Long.valueOf(epochTime) * 1000);
+        DateFormat format = new SimpleDateFormat("EEEE");
         String formatted = format.format(date);
         return formatted;
     }

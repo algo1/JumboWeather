@@ -14,10 +14,13 @@
         android:text="08:00"
         android:textSize="15sp" />
 
-    <android.support.v7.widget.AppCompatImageView
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_gravity="center" />
+    <com.android.volley.toolbox.NetworkImageView
+        android:id="@+id/weatherIcon"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="3dp"
+        android:layout_marginTop="3dp" />
 
     <android.support.v7.widget.AppCompatTextView
         android:id="@+id/temp"

@@ -2,35 +2,42 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_weight="4"
     android:paddingBottom="5dp"
-    android:paddingLeft="15dp"
-    android:paddingRight="10dp"
+    android:paddingLeft="5dp"
     android:paddingTop="10dp">
 
     <android.support.v7.widget.AppCompatTextView
         android:id="@+id/day"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
+        android:layout_width="60dp"
+        android:layout_height="30dp"
+        android:layout_weight="2"
         android:hint="Day"
         android:textSize="20sp" />
 
-    <android.support.v7.widget.AppCompatImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    <com.android.volley.toolbox.NetworkImageView
+        android:id="@+id/weatherIcon"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_gravity="right"
+        android:layout_marginRight="20dp" />
 
     <android.support.v7.widget.AppCompatTextView
         android:id="@+id/minTemp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_gravity="right"
+        android:layout_marginRight="10dp"
         android:layout_weight="1"
         android:hint="Min Temp"
         android:textSize="20sp" />
 
     <android.support.v7.widget.AppCompatTextView
         android:id="@+id/maxTemp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_gravity="right"
+        android:layout_marginRight="10dp"
         android:layout_weight="1"
         android:hint="Max Temp"
         android:textSize="20sp" />
