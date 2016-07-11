@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.NetworkImageView;
 import com.lokesh.jumboweather.apiresponseobjects.AccuWeatherHourData;
+import com.lokesh.jumboweather.appconstants.AppConstants;
 import com.lokesh.jumboweather.network.NetworkInterface;
 import com.lokesh.jumboweather.utils.TimeUtils;
 
@@ -59,7 +60,7 @@ public class HourforecastAdapter extends RecyclerView.Adapter<HourforecastAdapte
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         holder.hour.setText(TimeUtils.getHourFromEpochTime(hourDataset.get(position).getEpochDateTime()));
-        holder.temp.setText(hourDataset.get(position).getTemperature().getValue());
+        holder.temp.setText(hourDataset.get(position).getTemperature().getValue() + AppConstants.DEGREE);
         holder.weatherIcon.setImageUrl(NetworkInterface.getWeatherIconUrl(hourDataset.get(position).getWeatherIcon()), mImageLoader);
 
     }

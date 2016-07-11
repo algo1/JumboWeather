@@ -16,10 +16,12 @@ import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.*;
 import com.android.volley.toolbox.StringRequest;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -27,17 +29,13 @@ import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.lokesh.jumboweather.apiresponseobjects.AccuWeatherCurrentWeatherData;
-import com.lokesh.jumboweather.apiresponseobjects.AccuWeatherFivedayForecastResponse;
-import com.lokesh.jumboweather.apiresponseobjects.AccuWeatherGeolocationResponse;
-import com.lokesh.jumboweather.apiresponseobjects.AccuWeatherHourData;
-import com.lokesh.jumboweather.appconstants.AppConstants;
-import com.lokesh.jumboweather.appconstants.UserInformation;
-import com.lokesh.jumboweather.network.NetworkInterface;
-import com.lokesh.jumboweather.network.Urls;
-import com.lokesh.jumboweather.utils.TimeUtils;
+import com.lokesh.jumboweather.apiresponseobjects.*;
+import com.lokesh.jumboweather.appconstants.*;
+import com.lokesh.jumboweather.network.*;
+import com.lokesh.jumboweather.utils.*;
 
 import java.lang.reflect.Type;
+import java.util.Date;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
@@ -45,6 +43,8 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
     private LocationRequest mLocationRequest;
     private GoogleApiClient mGoogleApiClient;
     private CountDownTimer refreshTimer;
+    private CountDownTimer imageTimer;
+    private ImageLoader mImageLoader;
 
     private String MAP_TAG = "MAP";
     private String NETWORK_TAG = "NETWORK";
@@ -59,6 +59,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
     private TextView currentTime;
     private TextView minTemp;
     private TextView maxTemp;
+    private NetworkImageView backgroundImage;
     private LinearLayout tempLayout;
 
 
@@ -78,29 +79,134 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
 
         bindUI();
 
+        doDeviceDensitySpecificWork();
+
+        // No manadatory internet connection check as cached data is used
+
+        mImageLoader = VolleySingleton.getInstance(this).getImageLoader();
+        setUpBackgroundImage();
+
 
         Intent intent = getIntent();
-        String action = intent.getAction();
         Uri data = intent.getData();
 
         if (data != null) {
             // handle deeplink
+            Log.d(DEEPLINK_TAG, data.toString());
             handleDeeplink(data);
         } else {
+            // get location from users device
             prepareGoogleApiLocationClient();
             registerLocationRequest();
-
         }
 
         setupRefreshTimer();
 
+
+    }
+
+    public void doDeviceDensitySpecificWork() {
+        AppConstants.DEVICE_DENSITY = DeviceDetails.getDeviceDensity(this);
+    }
+
+
+    public void setUpBackgroundImage() {
+
+
+        // Todo get device params and network type , make an appropriate req
+
+        String lastUpdatedTime = new PrefManager(this).readFromPrefs("lastUpdatedTime");
+        Date lastDate = new Date(Long.valueOf(lastUpdatedTime));
+        Date currentDate = new Date(System.currentTimeMillis());
+        long seconds = (currentDate.getTime() - lastDate.getTime());
+
+        PrefManager prefManager = new PrefManager(this);
+        String currentImageUrl = prefManager.readFromPrefs("currentImageUrl");
+
+        Log.d(REFRESH_TAG, lastUpdatedTime + " - " + System.currentTimeMillis() + " - " + seconds);
+
+        if (seconds >= AppConstants.IMAGE_REFRESH_RATE_In_Millis || TextUtils.isEmpty(currentImageUrl)) {
+            // Need to fetch a new image
+            Log.d(REFRESH_TAG, "Fetch bgi");
+            fetchBackgroundImageList();
+        } else {
+            // Use the original image
+            Log.d(REFRESH_TAG, "Use existing");
+            backgroundImage.setImageUrl(currentImageUrl, mImageLoader);
+            setImageTimer(seconds);
+        }
+    }
+
+    public void setImageTimer(long seconds) {
+
+        long timeRemaining = AppConstants.IMAGE_REFRESH_RATE_In_Millis - seconds;
+
+        imageTimer = new CountDownTimer(timeRemaining, timeRemaining) {
+            @Override
+            public void onTick(long l) {
+
+            }
+
+            @Override
+            public void onFinish() {
+                // Refresh bg
+                if (!isFinishing()) {
+                    setUpBackgroundImage();
+                    imageTimer.cancel();
+                    Log.d(REFRESH_TAG, "Background image refreshed");
+                }
+
+            }
+        };
+
+        imageTimer.start();
+    }
+
+    public void getandsetBackgroundImage(FlickrInterestingPhotosResponse data) {
+
+        FlickrInterestingPhotosResponse.Photo randomPhoto = data.getQuery().getResults().getPhoto().get(MathUtils.getRandomPhotoIndex(data.getQuery().getCount()));
+        // Todo fetch url as per network and free memory DOne
+        String imageUrl = NetworkInterface.getFlickrImageUrl(randomPhoto.getFarm(), randomPhoto.getServer(), randomPhoto.getId(), randomPhoto.getSecret(), getApplicationContext());
+        Log.d(NETWORK_TAG, randomPhoto.getFarm() + "-" + randomPhoto.getServer() + "-" + randomPhoto.getId() + "-" + randomPhoto.getSecret());
+        Log.d(NETWORK_TAG, imageUrl);
+        backgroundImage.setImageUrl(imageUrl, mImageLoader);
+
+
+        PrefManager prefManager = new PrefManager(this);
+        prefManager.writeToPreferences("lastUpdatedTime", String.valueOf(System.currentTimeMillis()));
+        prefManager.writeToPreferences("currentImageUrl", imageUrl);
+
+        setImageTimer(0);
+
+    }
+
+    public void fetchBackgroundImageList() {
+
+        String url = Urls.flickr_imagelist_url;
+        url = NetworkInterface.getFlickImageListUrl(url);
+
+        StringRequest interestingImageListRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Gson gson = new Gson();
+                FlickrInterestingPhotosResponse data = gson.fromJson(response, FlickrInterestingPhotosResponse.class);
+                getandsetBackgroundImage(data);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.d(NETWORK_TAG, "Error in fetchBackgroundImageList : " + error.toString());
+
+            }
+        });
+        VolleySingleton.getInstance(this).addToRequestQueue(interestingImageListRequest);
     }
 
     public void setupRefreshTimer() {
 
         Log.d(REFRESH_TAG, "Refresh Timer set up done");
 
-        refreshTimer = new CountDownTimer(60 * 1000, 60 * 1000) {
+        refreshTimer = new CountDownTimer(AppConstants.REFRESH_RATE_in_Millis, AppConstants.REFRESH_RATE_in_Millis) {
             @Override
             public void onTick(long l) {
 
@@ -125,12 +231,26 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
         if (refreshTimer != null) {
             refreshTimer.cancel();
         }
+        if (imageTimer != null) {
+            imageTimer.cancel();
+        }
         super.onDestroy();
     }
 
 
     public void refreshScreen() {
+
         Log.d(REFRESH_TAG, "Screen Refresh started");
+
+        // Since Deeplink bypasses  creation
+        if (mGoogleApiClient == null) {
+            prepareGoogleApiLocationClient();
+        }
+        if (mLocationRequest == null) {
+            registerLocationRequest();
+        }
+
+        // We need to refresh the screen , so perform all the tasks from beginning
         onConnected(null);
     }
 
@@ -142,6 +262,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
         if (TextUtils.isEmpty(lat) || TextUtils.isEmpty(lng)) {
             if (TextUtils.isEmpty(location)) {
                 // Todo Invalid deeplink
+                Toast.makeText(getApplicationContext(), "Link doesnot contain enough data", Toast.LENGTH_SHORT).show();
             } else {
                 // Todo fetch id for the particular location and proceed
             }
@@ -153,8 +274,8 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
     }
 
     public void setCurrentDayExtremes(AccuWeatherFivedayForecastResponse data) {
-        minTemp.setText(data.getDailyForecasts().get(0).getTemperature().getMinimum().getValue());
-        maxTemp.setText(data.getDailyForecasts().get(0).getTemperature().getMaximum().getValue());
+        minTemp.setText(data.getDailyForecasts().get(0).getTemperature().getMinimum().getValue() + AppConstants.DEGREE);
+        maxTemp.setText(data.getDailyForecasts().get(0).getTemperature().getMaximum().getValue() + AppConstants.DEGREE);
     }
 
     public void prepare5DayForecastCard(AccuWeatherFivedayForecastResponse data) {
@@ -185,6 +306,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
         onewordWeather = (TextView) findViewById(R.id.onewordWeather);
         currentLocation = (TextView) findViewById(R.id.currentLocation);
         currentTime = (TextView) findViewById(R.id.currentTime);
+        backgroundImage = (NetworkImageView) findViewById(R.id.backgroundImage);
 
         minTemp = (TextView) findViewById(R.id.minTemp);
         maxTemp = (TextView) findViewById(R.id.maxTemp);
@@ -211,7 +333,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
             return;
         }
 
-        currentTemp.setText(data.getTemperature().getMetric().getValue().toString());
+        currentTemp.setText(data.getTemperature().getMetric().getValue().toString() + AppConstants.DEGREE);
         onewordWeather.setText(data.getWeatherText());
 
         prepareDetailView(data);
@@ -268,17 +390,23 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
 
     @Override
     protected void onStart() {
-        mGoogleApiClient.connect();
+        if (mGoogleApiClient != null) {
+            // Since deeplink data do not need user location
+            mGoogleApiClient.connect();
+        }
         super.onStart();
     }
 
     @Override
     protected void onStop() {
-        mGoogleApiClient.disconnect();
+        if (mGoogleApiClient != null) {
+            mGoogleApiClient.disconnect();
+        }
         super.onStop();
     }
 
 
+    // Todo Implement Runtime permissions
     @Override
     public void onRequestPermissionsResult(int requestCode,
                                            String permissions[], int[] grantResults) {
@@ -328,7 +456,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-
+                Log.d(NETWORK_TAG, "Error in getLocationId : " + error.toString());
             }
         });
 
@@ -353,7 +481,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-
+                Log.d(NETWORK_TAG, "Error in getCurrentWeather : " + error.toString());
             }
         });
 
@@ -383,7 +511,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-
+                Log.d(NETWORK_TAG, "Error in getNext12HoursForecast : " + error.toString());
             }
         });
 
@@ -408,7 +536,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-
+                Log.d(NETWORK_TAG, "Error in getNext5DayForecast : " + error.toString());
             }
         });
 
@@ -432,8 +560,8 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
 
     public void setUserLocationfromDeeplink(String lat, String lng) {
         // lat lng wont be null
-        UserInformation.setLat(Long.valueOf(lat));
-        UserInformation.setLng(Long.valueOf(lng));
+        UserInformation.setLat(Double.valueOf(lat));
+        UserInformation.setLng(Double.valueOf(lng));
         getLocationId();
     }
 

@@ -11,4 +11,7 @@ public class Urls {
     public static String accuweather_daily_forecast = "http://dataservice.accuweather.com/forecasts/v1/daily/5day/";
 
     public static String accu_weather_icons = "https://apidev.accuweather.com/developers/Media/Default/WeatherIcons/";
+    public static String flickr_image_url = "https://farm{farm-id}.staticflickr.com/{server-id}/{id}_{secret}_[mstzb].jpg";
+
+    public static String flickr_imagelist_url = "https://query.yahooapis.com/v1/public/yql?";
 }

@@ -13,6 +13,7 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.lokesh.jumboweather.appconstants.AppConstants;
 import com.lokesh.jumboweather.network.NetworkInterface;
 import com.lokesh.jumboweather.utils.TimeUtils;
 
@@ -78,7 +79,7 @@ public class DetailActivity extends AppCompatActivity implements OnMapReadyCallb
 
         currentLocation.setText(details.getUserLocation());
         currentTime.setText(TimeUtils.getCurrentTimeinAMPM());
-        currenttempValue.setText(details.getCurrentTemp());
+        currenttempValue.setText(details.getCurrentTemp() + AppConstants.DEGREE);
         currentHumidity.setText(details.getHumidity() + "%");
         currentVisibility.setText(details.getVisibility() + " km");
         uvLevel.setText(details.getUvIndexTest() + " " + details.getUvIndex());

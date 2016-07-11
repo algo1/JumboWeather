@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.NetworkImageView;
 import com.lokesh.jumboweather.apiresponseobjects.AccuWeatherFivedayForecastResponse;
+import com.lokesh.jumboweather.appconstants.AppConstants;
 import com.lokesh.jumboweather.network.NetworkInterface;
 import com.lokesh.jumboweather.utils.TimeUtils;
 
@@ -66,8 +67,8 @@ public class DayforecastAdapter extends RecyclerView.Adapter<DayforecastAdapter.
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
         holder.day.setText(TimeUtils.getDayFromEpochTime(mDataset.getDailyForecasts().get(position).getEpochDate()));
-        holder.minTemp.setText(mDataset.getDailyForecasts().get(position).getTemperature().getMinimum().getValue());
-        holder.maxTemp.setText(mDataset.getDailyForecasts().get(position).getTemperature().getMaximum().getValue());
+        holder.minTemp.setText(mDataset.getDailyForecasts().get(position).getTemperature().getMinimum().getValue() + AppConstants.DEGREE);
+        holder.maxTemp.setText(mDataset.getDailyForecasts().get(position).getTemperature().getMaximum().getValue() + AppConstants.DEGREE);
         holder.weatherIcon.setImageUrl(NetworkInterface.getWeatherIconUrl(mDataset.getDailyForecasts().get(position).getDay().getIcon()), mImageLoader);
     }
 

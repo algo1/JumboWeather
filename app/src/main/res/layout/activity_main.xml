@@ -1,118 +1,143 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.lokesh.jumboweather.MainActivity">
 
-    <!--<include layout="@layout/common_header" />-->
-
-    <android.support.v7.widget.AppCompatTextView
-        android:id="@+id/currentLocation"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:hint="Current Location"
-        android:textSize="18sp" />
-
-    <android.support.v7.widget.AppCompatTextView
-        android:id="@+id/currentTime"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/currentLocation"
-        android:layout_centerHorizontal="true"
-        android:hint="Current Time"
-        android:textSize="14sp" />
-
-    <android.support.v7.widget.AppCompatTextView
-        android:id="@+id/onewordWeather"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/currentTime"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
-        android:gravity="center"
-        android:hint="Current Weather in one word"
-        android:textSize="18sp" />
-
-    <LinearLayout
-        android:id="@+id/tempLayout"
+    <com.android.volley.toolbox.NetworkImageView
+        android:id="@+id/backgroundImage"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/onewordWeather"
-        android:layout_marginTop="10dp">
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/transparent"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin">
+
+        <!--<include layout="@layout/common_header" />-->
 
         <android.support.v7.widget.AppCompatTextView
-            android:id="@+id/minTemp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/onewordWeather"
-            android:layout_gravity="bottom"
-            android:layout_weight="1"
-            android:gravity="center_horizontal|bottom"
-            android:hint="21"
-            android:textSize="24sp" />
-
-        <android.support.v7.widget.AppCompatTextView
-            android:id="@+id/currentTemp"
+            android:id="@+id/currentLocation"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_gravity="bottom"
-            android:layout_marginTop="20dp"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:hint="27"
-            android:textSize="72sp" />
+            android:hint="Current Location"
+            android:textSize="18sp" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/currentTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/currentLocation"
+            android:layout_centerHorizontal="true"
+            android:hint="Current Time"
+            android:textSize="14sp" />
 
 
         <android.support.v7.widget.AppCompatTextView
-            android:id="@+id/maxTemp"
+            android:id="@+id/onewordWeather"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_below="@id/onewordWeather"
-            android:layout_gravity="bottom"
-            android:layout_weight="1"
-            android:gravity="center_horizontal|bottom"
-            android:hint="32"
-            android:textSize="24sp" />
+            android:layout_below="@id/currentTime"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:hint="Current Weather in one word"
+            android:textSize="18sp" />
 
-
-    </LinearLayout>
-
-    <android.support.v7.widget.CardView
-        android:id="@+id/hourforecastcard"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/tempLayout"
-        android:layout_marginBottom="10dp">
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/hourforecastList"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
-
-    </android.support.v7.widget.CardView>
-
-
-    <android.support.v7.widget.CardView
-        android:id="@+id/dayforecastcard"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/hourforecastcard">
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/dayforecastList"
+        <LinearLayout
+            android:id="@+id/tempLayout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scrollbars="vertical" />ew>
+            android:layout_height="wrap_content"
+            android:layout_below="@id/onewordWeather"
+            android:layout_marginTop="10dp">
 
-    </android.support.v7.widget.CardView>
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/minTemp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/onewordWeather"
+                android:layout_gravity="bottom"
+                android:layout_weight="1"
+                android:gravity="center_horizontal|bottom"
+                android:hint="21"
+                android:textSize="24sp" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/currentTemp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="bottom"
+                android:layout_marginTop="20dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:hint="27"
+                android:textSize="72sp" />
+
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/maxTemp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_below="@id/onewordWeather"
+                android:layout_gravity="bottom"
+                android:layout_weight="1"
+                android:gravity="center_horizontal|bottom"
+                android:hint="32"
+                android:textSize="24sp" />
+
+
+        </LinearLayout>
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/hourforecastcard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tempLayout"
+            android:layout_marginBottom="10dp"
+            card_view:cardBackgroundColor="@android:color/transparent">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/hourforecastList"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:cacheColorHint="@android:color/transparent"
+                android:fadeScrollbars="false"
+                android:scrollbars="horizontal"></android.support.v7.widget.RecyclerView>
+
+        </android.support.v7.widget.CardView>
+
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/dayforecastcard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/hourforecastcard"
+            card_view:cardBackgroundColor="@android:color/transparent">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/dayforecastList"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"
+                android:cacheColorHint="@android:color/transparent"
+                android:scrollbars="vertical" />ew>
+
+        </android.support.v7.widget.CardView>
+
+    </RelativeLayout>
+
 
     <!--<android.support.v7.widget.AppCompatTextView-->
     <!--android:id="@+id/days5WeatherSelector"-->
@@ -141,4 +166,4 @@
     <!--android:textSize="24sp" />-->
 
 
-</RelativeLayout>
+</FrameLayout>
