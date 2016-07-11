@@ -15,10 +15,11 @@ public class AppConstants {
 
     public static final long REFRESH_RATE_in_Millis = 30 * 60 * 1000;
 
-    public static final long IMAGE_REFRESH_RATE_In_Millis = 1 * 60 * 1000;
+    public static final long IMAGE_REFRESH_RATE_In_Millis = 1 * 30 * 1000;
 
 
     public static final String DEGREE = "\u00b0";
 
     public static int DEVICE_DENSITY = 0;
+
 }

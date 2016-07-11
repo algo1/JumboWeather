@@ -21,7 +21,8 @@ import android.widget.Toast;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.*;
+import com.android.volley.toolbox.ImageLoader;
+import com.android.volley.toolbox.NetworkImageView;
 import com.android.volley.toolbox.StringRequest;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -29,10 +30,17 @@ import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.lokesh.jumboweather.apiresponseobjects.*;
-import com.lokesh.jumboweather.appconstants.*;
-import com.lokesh.jumboweather.network.*;
-import com.lokesh.jumboweather.utils.*;
+import com.lokesh.jumboweather.apiresponseobjects.AccuWeatherCurrentWeatherData;
+import com.lokesh.jumboweather.apiresponseobjects.AccuWeatherFivedayForecastResponse;
+import com.lokesh.jumboweather.apiresponseobjects.AccuWeatherGeolocationResponse;
+import com.lokesh.jumboweather.apiresponseobjects.AccuWeatherHourData;
+import com.lokesh.jumboweather.apiresponseobjects.FlickrInterestingPhotosResponse;
+import com.lokesh.jumboweather.appconstants.AppConstants;
+import com.lokesh.jumboweather.appconstants.UserInformation;
+import com.lokesh.jumboweather.network.NetworkInterface;
+import com.lokesh.jumboweather.network.Urls;
+import com.lokesh.jumboweather.utils.MathUtils;
+import com.lokesh.jumboweather.utils.TimeUtils;
 
 import java.lang.reflect.Type;
 import java.util.Date;
@@ -125,19 +133,24 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
 
         Log.d(REFRESH_TAG, lastUpdatedTime + " - " + System.currentTimeMillis() + " - " + seconds);
 
-        if (seconds >= AppConstants.IMAGE_REFRESH_RATE_In_Millis || TextUtils.isEmpty(currentImageUrl)) {
+
+        if (seconds >= AppConstants.IMAGE_REFRESH_RATE_In_Millis) {
             // Need to fetch a new image
-            Log.d(REFRESH_TAG, "Fetch bgi");
+            Log.d(REFRESH_TAG, "Loading dynamic bgImage ");
             fetchBackgroundImageList();
+
         } else {
             // Use the original image
-            Log.d(REFRESH_TAG, "Use existing");
+            Log.d(REFRESH_TAG, "Use existing - " + currentImageUrl);
+            backgroundImage.setErrorImageResId(R.drawable.default_bg);
             backgroundImage.setImageUrl(currentImageUrl, mImageLoader);
             setImageTimer(seconds);
         }
     }
 
     public void setImageTimer(long seconds) {
+
+        Log.d(REFRESH_TAG, "Setting image Timer");
 
         long timeRemaining = AppConstants.IMAGE_REFRESH_RATE_In_Millis - seconds;
 
@@ -162,6 +175,12 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
         imageTimer.start();
     }
 
+    public void updateSharedPrefsofImagebg(String imageUrl) {
+        PrefManager prefManager = new PrefManager(this);
+        prefManager.writeToPreferences("lastUpdatedTime", String.valueOf(System.currentTimeMillis()));
+        prefManager.writeToPreferences("currentImageUrl", imageUrl);
+    }
+
     public void getandsetBackgroundImage(FlickrInterestingPhotosResponse data) {
 
         FlickrInterestingPhotosResponse.Photo randomPhoto = data.getQuery().getResults().getPhoto().get(MathUtils.getRandomPhotoIndex(data.getQuery().getCount()));
@@ -169,12 +188,12 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
         String imageUrl = NetworkInterface.getFlickrImageUrl(randomPhoto.getFarm(), randomPhoto.getServer(), randomPhoto.getId(), randomPhoto.getSecret(), getApplicationContext());
         Log.d(NETWORK_TAG, randomPhoto.getFarm() + "-" + randomPhoto.getServer() + "-" + randomPhoto.getId() + "-" + randomPhoto.getSecret());
         Log.d(NETWORK_TAG, imageUrl);
+
+        backgroundImage.setErrorImageResId(R.drawable.default_bg);
         backgroundImage.setImageUrl(imageUrl, mImageLoader);
 
 
-        PrefManager prefManager = new PrefManager(this);
-        prefManager.writeToPreferences("lastUpdatedTime", String.valueOf(System.currentTimeMillis()));
-        prefManager.writeToPreferences("currentImageUrl", imageUrl);
+        updateSharedPrefsofImagebg(imageUrl);
 
         setImageTimer(0);
 
@@ -189,6 +208,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
             @Override
             public void onResponse(String response) {
                 Gson gson = new Gson();
+                Log.d(NETWORK_TAG, response);
                 FlickrInterestingPhotosResponse data = gson.fromJson(response, FlickrInterestingPhotosResponse.class);
                 getandsetBackgroundImage(data);
             }
@@ -458,7 +478,12 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
             public void onErrorResponse(VolleyError error) {
                 Log.d(NETWORK_TAG, "Error in getLocationId : " + error.toString());
             }
-        });
+        }) {
+            @Override
+            public Priority getPriority() {
+                return Priority.IMMEDIATE;
+            }
+        };
 
         VolleySingleton.getInstance(this).addToRequestQueue(locationIdRequest);
     }
@@ -483,7 +508,12 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
             public void onErrorResponse(VolleyError error) {
                 Log.d(NETWORK_TAG, "Error in getCurrentWeather : " + error.toString());
             }
-        });
+        }) {
+            @Override
+            public Priority getPriority() {
+                return Priority.HIGH;
+            }
+        };
 
         // Passing this also passes application context , see implementation
         VolleySingleton.getInstance(this).addToRequestQueue(currentWeatherRequest);

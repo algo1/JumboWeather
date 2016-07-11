@@ -22,8 +22,6 @@ public class VolleySingleton {
         mCtx = context;
         mRequestQueue = getRequestQueue();
 
-        // todo modify the cache based on device specs
-
         mImageLoader = new ImageLoader(mRequestQueue,
                 new ImageLoader.ImageCache() {
                     private final LruCache<String, Bitmap>
