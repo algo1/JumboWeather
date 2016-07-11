@@ -9,8 +9,8 @@
 					http://www.jumbotail.com/app/weather?lat=17.7389&lng=83.1225
 
 	Api used:
-	AccuWeather Api for weather data and icons
-	Flickr Api for background image
+		AccuWeather Api for weather data and icons
+		Flickr Api for background image
 
 	External Libs used:
 		Volley - For network reqs and it's image loader for image fetching and caching 
@@ -31,6 +31,9 @@
 
 	Areas NOT focused  : Null pointer checks
 		             Animations (which is must for background image transistion) and UI
+		             
+	NOTE : Play Services Sdk is used for retrieving location as per the latest android docs recommendation . This
+		   approach requires play store to be installed on user's device.
 
 	Developed and tested on (FYI): Samsung Galaxy Note 4 , Android 23
 
